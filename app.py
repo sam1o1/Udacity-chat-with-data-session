@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+from llm_chat import chat_with_data
 # # Sidebar for password input
 st.sidebar.title("🗝️ Authentication")
 password = st.sidebar.text_input("Enter Password", type="password")
@@ -47,7 +47,9 @@ if uploaded_file is not None:
         st.session_state.chat_history.append({"role": "user", "content": user_input})
         
 # #         # Respond with "hello"
-        response = "hello"
+        # response = "hello"
+        pandas_df_agent=chat_with_data(df)
+        response = pandas_df_agent.run(user_input)
         
         st.session_state.chat_history.append({"role": "assistant", "content": response})
         
