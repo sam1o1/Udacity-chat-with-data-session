@@ -48,11 +48,11 @@ if uploaded_file is not None:
         
 # #         # Respond with "hello"
         # response = "hello"
-        pandas_df_agent=chat_with_data(df)
-        response = pandas_df_agent.run(user_input)
-        
-        st.session_state.chat_history.append({"role": "assistant", "content": response})
-        
-# #         # Display the latest chat messages
         st.chat_message("user",avatar="logo.jpg").markdown(user_input)
-        st.chat_message("assistant",avatar="🤖").markdown(response)
+        pandas_df_agent=chat_with_data(df)
+  
+        with st.spinner("The Agent is generating answers!"):
+            response = pandas_df_agent.run(user_input)
+            st.session_state.chat_history.append({"role": "assistant", "content": response})
+
+            st.chat_message("assistant",avatar="🤖").markdown(response)

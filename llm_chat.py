@@ -6,7 +6,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 openai_api_key= os.getenv('OPENAI_API_KEY')
+
 def chat_with_data (df):
+    
     llm = ChatOpenAI(
         temperature=0, model="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True
     )
